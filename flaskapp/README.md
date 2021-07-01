@@ -17,5 +17,7 @@ Instalacion :
    Actualizar BD                                               -> flask db upgrade 
 5. Inicializar aplicacion ->   python app.py
 
+6. Ejecutar el script de mysql (script.sql) para insertar los 3 primeros registros de la tabla tipo.
+
 Quedo pendiente exportacion a archivo txt por falta de tiempo.
 Saludos
