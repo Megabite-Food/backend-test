@@ -1,0 +1,109 @@
+{% extends 'template.html' %}
+
+{% block usuario %}
+
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
+{% from "_formhelpers.html" import render_field %}
+
+tabla vehiculos
+<table>
+    <thead>
+      <tr>
+        <th>IDVEHICULO</th>
+        <th>Placa </th>
+        <th>Usuario</th>    
+        <th>idtipo</th>             
+        <th>Creado</th>
+      </tr>
+    </thead>
+    <tbody>
+     {% for vehiculo in vehiculos %}
+     <tr>
+         <td> {{ vehiculo.idvehiculo }} </td>
+         <td> {{ vehiculo.placa }} </td>
+         <td> {{vehiculo.usuario}} </td>
+         <td> {{vehiculo.idtipo }} </td>     
+         <td> {{vehiculo.creado }} </td>   
+     </tr>
+     {% endfor %}
+    </tbody>
+  </table>
+  <br>
+  tabla visitas
+<table>
+    <thead>
+      <tr>
+        <th>idvisita</th>
+        <th>idvehiculo </th>
+        <th>hora_inicio</th>    
+        <th>hora_fin</th>             
+      </tr>
+    </thead>
+    <tbody>
+     {% for visita in visitas %}
+     <tr>
+         <td> {{ visita.idvisita }} </td>
+         <td> {{ visita.idvehiculo }} </td>
+         <td> {{visita.hora_inicio}} </td>
+         <td> {{visita.hora_fin }} </td>     
+     </tr>
+     {% endfor %}
+    </tbody>
+  </table>
+
+
+  <br>
+  tabla tipo vehiculo
+<table>
+    <thead>
+      <tr>
+        <th>idtipo</th>
+        <th>nombretipo </th>
+        <th>precio</th>               
+      </tr>
+    </thead>
+    <tbody>
+     {% for tipo in tipos %}
+     <tr>
+         <td> {{ tipo.idtipo }} </td>
+         <td> {{ tipo.nombretipo }} </td>
+         <td> {{tipo.precio}} </td>
+     </tr>
+     {% endfor %}
+    </tbody>
+  </table>
+
+
+  <br>
+  tabla estancia
+<table>
+    <thead>
+      <tr>
+        <th>idestancia</th>
+        <th>idvehiculo </th>
+        <th>minutos</th>  
+        <th>tipo</th>               
+      </tr>
+    </thead>
+    <tbody>
+     {% for estancia in estancias %}
+     <tr>
+         <td> {{ estancia.idestancia }} </td>
+         <td> {{ estancia.idvehiculo }} </td>
+         <td> {{estancia.minutos}} </td>
+         <td> {{estancia.tipo}} </td>
+     </tr>
+     {% endfor %}
+    </tbody>
+  </table>
+{% endblock  %}
