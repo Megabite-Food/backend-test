@@ -12,7 +12,7 @@ Instalacion :
 2. Instalar el archivo requirements.txt 
    -> pip install -r requirements.txt 
 3. Modificar Archivo config/settings.py , usuario - pass y nombre de BD.
-4. Inicializar el ORM (ejecutar a la altura de la ruta app.py) -> flask db ini     
+4. Inicializar el ORM (ejecutar a la altura de la ruta app.py) -> flask db init     
    Inicializar Migraciones                                     -> flask db migrate
    Actualizar BD                                               -> flask db upgrade 
 5. Inicializar aplicacion ->   python app.py
