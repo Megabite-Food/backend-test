@@ -1,0 +1,28 @@
+{% extends 'template.html' %}
+
+{% block usuario %}
+
+Formulario Reporte 
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
+{% from "_formhelpers.html" import render_field %}
+<form method='POST'>
+  <dl>
+    {{ form.csrf_token }}
+    {{ render_field(form.placa) }}
+  </dl>
+  <p><input type=submit value=Generar>
+</form>
+
+
+
+{% endblock  %}

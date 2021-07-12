@@ -1,0 +1,38 @@
+{% extends 'template.html' %}
+
+{% block usuario %}
+
+Generar Reporte
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
+<table>
+    <thead>
+      <tr>
+        <th>Placa</th>
+        <th>Minutos </th>
+        <th>Total</th>                
+      </tr>
+    </thead>
+    <tbody>
+     {% for dato in datos %}
+     <tr>
+         <td> {{ dato.PLACA }} </td>
+         <td> {{ dato.MINUTOS }} </td>
+         <td> {{dato.TOTAL}} </td>
+     </tr>
+     {% endfor %}
+    </tbody>
+  </table>
+
+
+
+{% endblock  %}

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+</style>
+</head>
+<body>
+<ul>
+  <li><a href="{{url_for('bp_registro.registro')}}">Entrada Vehiculos</a></li>
+  <li><a href="{{url_for('bp_registro.salida')}}">Salida Vehiculos</a></li>
+  <li><a href="{{url_for('bp_registro.alta')}}">Alta de Vehiculos </a></li>
+  <li><a href="{{url_for('bp_registro.comienzames')}}">Comienza Mes</a></li>
+  <li><a href="{{url_for('bp_registro.reporte')}}">Reportes</a></li>
+  <li><a href="{{url_for('bp_registro.tablas')}}">Tablas</a></li>
+  
+</ul>
+<br> 
+
+{% block usuario %}
+   
+{% endblock usuario %}
+
+</body>
+</html>
