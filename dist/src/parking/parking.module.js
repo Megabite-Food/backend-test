@@ -9,13 +9,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ParkingModule = void 0;
 const common_1 = require("@nestjs/common");
 const parking_service_1 = require("./parking.service");
+const prisma_service_1 = require("../prisma.service");
 const parking_controller_1 = require("./parking.controller");
 let ParkingModule = class ParkingModule {
 };
 ParkingModule = __decorate([
     (0, common_1.Module)({
         controllers: [parking_controller_1.ParkingController],
-        providers: [parking_service_1.ParkingService]
+        providers: [parking_service_1.ParkingService, prisma_service_1.PrismaService],
     })
 ], ParkingModule);
 exports.ParkingModule = ParkingModule;

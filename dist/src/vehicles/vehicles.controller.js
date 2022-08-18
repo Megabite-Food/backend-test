@@ -15,8 +15,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.VehiclesController = void 0;
 const common_1 = require("@nestjs/common");
 const vehicles_service_1 = require("./vehicles.service");
-const create_vehicle_dto_1 = require("./dto/create-vehicle.dto");
-const update_vehicle_dto_1 = require("./dto/update-vehicle.dto");
 let VehiclesController = class VehiclesController {
     constructor(vehiclesService) {
         this.vehiclesService = vehiclesService;
@@ -28,20 +26,20 @@ let VehiclesController = class VehiclesController {
         return this.vehiclesService.findAll();
     }
     findOne(id) {
-        return this.vehiclesService.findOne(+id);
+        return this.vehiclesService.findOne(id);
     }
     update(id, updateVehicleDto) {
-        return this.vehiclesService.update(+id, updateVehicleDto);
+        return this.vehiclesService.update(id, updateVehicleDto);
     }
     remove(id) {
-        return this.vehiclesService.remove(+id);
+        return this.vehiclesService.remove(id);
     }
 };
 __decorate([
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [create_vehicle_dto_1.CreateVehicleDto]),
+    __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", void 0)
 ], VehiclesController.prototype, "create", null);
 __decorate([
@@ -51,29 +49,29 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], VehiclesController.prototype, "findAll", null);
 __decorate([
-    (0, common_1.Get)(':id'),
-    __param(0, (0, common_1.Param)('id')),
+    (0, common_1.Get)(":id"),
+    __param(0, (0, common_1.Param)("id")),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], VehiclesController.prototype, "findOne", null);
 __decorate([
-    (0, common_1.Patch)(':id'),
-    __param(0, (0, common_1.Param)('id')),
+    (0, common_1.Patch)(":id"),
+    __param(0, (0, common_1.Param)("id")),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, update_vehicle_dto_1.UpdateVehicleDto]),
+    __metadata("design:paramtypes", [String, Object]),
     __metadata("design:returntype", void 0)
 ], VehiclesController.prototype, "update", null);
 __decorate([
-    (0, common_1.Delete)(':id'),
-    __param(0, (0, common_1.Param)('id')),
+    (0, common_1.Delete)(":id"),
+    __param(0, (0, common_1.Param)("id")),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], VehiclesController.prototype, "remove", null);
 VehiclesController = __decorate([
-    (0, common_1.Controller)('vehicles'),
+    (0, common_1.Controller)("vehicles"),
     __metadata("design:paramtypes", [vehicles_service_1.VehiclesService])
 ], VehiclesController);
 exports.VehiclesController = VehiclesController;

@@ -27,12 +27,12 @@ model Vehicle {
 }
 
 model Parking {
-  id           Int      @id @default(autoincrement())
+  id           Int       @id @default(autoincrement())
   dateStart    DateTime
-  dateFinish   DateTime
+  dateFinish   DateTime?
   licensePlate String
   active       Boolean
-  vehicle      Vehicle  @relation(fields: [licensePlate], references: [licensePlate])
+  vehicle      Vehicle   @relation(fields: [licensePlate], references: [licensePlate])
 }
 
 model Tariff {

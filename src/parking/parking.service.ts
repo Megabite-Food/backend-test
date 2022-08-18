@@ -1,26 +1,60 @@
-import { Injectable } from '@nestjs/common';
-import { CreateParkingDto } from './dto/create-parking.dto';
-import { UpdateParkingDto } from './dto/update-parking.dto';
+import { Injectable } from "@nestjs/common";
+import { PrismaService } from "../prisma.service";
+import { Parking } from "@prisma/client";
 
 @Injectable()
 export class ParkingService {
-  create(createParkingDto: CreateParkingDto) {
-    return 'This action adds a new parking';
-  }
+  constructor(private prisma: PrismaService) {}
 
+  async create(createParkingDto: Parking) {
+    const parking = await this.prisma.parking.create({
+      data: {
+        dateStart: new Date(Date.now()),
+        dateFinish: undefined,
+        licensePlate: createParkingDto.licensePlate,
+        active: true,
+      },
+    });
+    return parking;
+  }
   findAll() {
-    return `This action returns all parking`;
+    return "Not implemented";
+  }
+  findOne(licensePlate: string) {
+    return "Not implemented";
+  }
+  async findByTypeAndDate(id: number, date: Date) {
+    const parking = await this.prisma.parking.findMany({
+      where: {
+        dateFinish: {
+          lte: date,
+        },
+        active: true,
+        vehicle: { vehicleTypeId: id },
+      },
+    });
+    return parking;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} parking`;
+  async findByType(id: number) {
+    const parking = await this.prisma.parking.findMany({
+      where: { active: true, vehicle: { vehicleTypeId: id } },
+    });
+    return parking;
   }
 
-  update(id: number, updateParkingDto: UpdateParkingDto) {
+  async findByLicencePlate(licensePlate: string) {
+    const parking = await this.prisma.parking.findMany({
+      where: { licensePlate: licensePlate, active: true },
+    });
+    return parking;
+  }
+
+  async update(id: number, updateParkingDto: Parking) {
     return `This action updates a #${id} parking`;
   }
 
-  remove(id: number) {
+  async remove(id: number) {
     return `This action removes a #${id} parking`;
   }
 }

@@ -1,26 +1,53 @@
-import { Injectable } from '@nestjs/common';
-import { CreateVehicleDto } from './dto/create-vehicle.dto';
-import { UpdateVehicleDto } from './dto/update-vehicle.dto';
-
+import { Injectable } from "@nestjs/common";
+import { PrismaService } from "../prisma.service";
+import { Vehicle } from "@prisma/client";
 @Injectable()
 export class VehiclesService {
-  create(createVehicleDto: CreateVehicleDto) {
-    return 'This action adds a new vehicle';
+  constructor(private prisma: PrismaService) {}
+
+  async create(createVehicleDto: Vehicle) {
+    const vehicle = await this.prisma.vehicle.create({
+      data: {
+        licensePlate: createVehicleDto.licensePlate,
+        vehicleTypeId: createVehicleDto.vehicleTypeId,
+        active: true,
+      },
+    });
+    return vehicle;
   }
 
-  findAll() {
-    return `This action returns all vehicles`;
+  async findAll() {
+    const vehicles = await this.prisma.vehicle.findMany({
+      where: { active: true },
+    });
+    return vehicles;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} vehicle`;
+  async findOne(licensePlate: string) {
+    const vehicle = await this.prisma.vehicle.findUnique({
+      where: { licensePlate },
+    });
+    return vehicle;
   }
 
-  update(id: number, updateVehicleDto: UpdateVehicleDto) {
-    return `This action updates a #${id} vehicle`;
+  async update(licensePlate: string, updateVehicleDto: Vehicle) {
+    const vehicle = await this.prisma.vehicle.update({
+      where: { licensePlate: licensePlate },
+      data: {
+        vehicleTypeId: updateVehicleDto.vehicleTypeId,
+      },
+    });
+    return vehicle;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} vehicle`;
+  // soft delete
+  async remove(licensePlate: string) {
+    const vehicle = await this.prisma.vehicle.update({
+      where: { licensePlate: licensePlate },
+      data: {
+        active: false,
+      },
+    });
+    return vehicle;
   }
 }

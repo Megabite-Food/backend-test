@@ -1,12 +1,10 @@
-import { ParkingService } from './parking.service';
-import { CreateParkingDto } from './dto/create-parking.dto';
-import { UpdateParkingDto } from './dto/update-parking.dto';
+import { Parking } from "@prisma/client";
+import { ParkingService } from "./parking.service";
 export declare class ParkingController {
     private readonly parkingService;
     constructor(parkingService: ParkingService);
-    create(createParkingDto: CreateParkingDto): string;
+    create(createParkingDto: Parking): Promise<Parking>;
     findAll(): string;
-    findOne(id: string): string;
-    update(id: string, updateParkingDto: UpdateParkingDto): string;
-    remove(id: string): string;
+    update(id: string, updateParkingDto: Parking): Promise<string>;
+    remove(id: string): Promise<string>;
 }

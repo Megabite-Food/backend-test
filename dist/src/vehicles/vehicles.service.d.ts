@@ -1,9 +1,11 @@
-import { CreateVehicleDto } from './dto/create-vehicle.dto';
-import { UpdateVehicleDto } from './dto/update-vehicle.dto';
+import { PrismaService } from "../prisma.service";
+import { Vehicle } from "@prisma/client";
 export declare class VehiclesService {
-    create(createVehicleDto: CreateVehicleDto): string;
-    findAll(): string;
-    findOne(id: number): string;
-    update(id: number, updateVehicleDto: UpdateVehicleDto): string;
-    remove(id: number): string;
+    private prisma;
+    constructor(prisma: PrismaService);
+    create(createVehicleDto: Vehicle): Promise<Vehicle>;
+    findAll(): Promise<Vehicle[]>;
+    findOne(licensePlate: string): Promise<Vehicle>;
+    update(licensePlate: string, updateVehicleDto: Vehicle): Promise<Vehicle>;
+    remove(licensePlate: string): Promise<Vehicle>;
 }

@@ -15,8 +15,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ParkingController = void 0;
 const common_1 = require("@nestjs/common");
 const parking_service_1 = require("./parking.service");
-const create_parking_dto_1 = require("./dto/create-parking.dto");
-const update_parking_dto_1 = require("./dto/update-parking.dto");
 let ParkingController = class ParkingController {
     constructor(parkingService) {
         this.parkingService = parkingService;
@@ -26,9 +24,6 @@ let ParkingController = class ParkingController {
     }
     findAll() {
         return this.parkingService.findAll();
-    }
-    findOne(id) {
-        return this.parkingService.findOne(+id);
     }
     update(id, updateParkingDto) {
         return this.parkingService.update(+id, updateParkingDto);
@@ -41,7 +36,7 @@ __decorate([
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [create_parking_dto_1.CreateParkingDto]),
+    __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", void 0)
 ], ParkingController.prototype, "create", null);
 __decorate([
@@ -51,29 +46,22 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], ParkingController.prototype, "findAll", null);
 __decorate([
-    (0, common_1.Get)(':id'),
-    __param(0, (0, common_1.Param)('id')),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", void 0)
-], ParkingController.prototype, "findOne", null);
-__decorate([
-    (0, common_1.Patch)(':id'),
-    __param(0, (0, common_1.Param)('id')),
+    (0, common_1.Patch)(":id"),
+    __param(0, (0, common_1.Param)("id")),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, update_parking_dto_1.UpdateParkingDto]),
+    __metadata("design:paramtypes", [String, Object]),
     __metadata("design:returntype", void 0)
 ], ParkingController.prototype, "update", null);
 __decorate([
-    (0, common_1.Delete)(':id'),
-    __param(0, (0, common_1.Param)('id')),
+    (0, common_1.Delete)(":id"),
+    __param(0, (0, common_1.Param)("id")),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], ParkingController.prototype, "remove", null);
 ParkingController = __decorate([
-    (0, common_1.Controller)('parking'),
+    (0, common_1.Controller)("parking"),
     __metadata("design:paramtypes", [parking_service_1.ParkingService])
 ], ParkingController);
 exports.ParkingController = ParkingController;
