@@ -22,5 +22,8 @@
   "homepage": "https://github.com/Megabite-Food/backend-test#readme",
   "devDependencies": {
     "prisma": "^4.2.1"
+  },
+  "dependencies": {
+    "@prisma/client": "^4.2.1"
   }
 }
